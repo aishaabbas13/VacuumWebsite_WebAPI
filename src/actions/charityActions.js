@@ -11,14 +11,14 @@ function charitiesFetched(charities){
 function charityFetched(charity){
     return {
         type: actionTypes.FETCH_CHARITY,
-        selectedMovie: charity
+        selectedCharity: charity
     }
 }
 
 function charitySet(charity){
     return {
         type: actionTypes.SET_CHARITY,
-        selectedMovie: charity
+        selectedCharity: charity
     }
 }
 

@@ -22,13 +22,13 @@ class charityList extends Component {
 
     handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
-        dispatch(setCharity(this.props.movies[selectedIndex]));
+        dispatch(setCharity(this.props.charities[selectedIndex]));
     }
 
     handleClick = (charity) => {
         const {dispatch} = this.props;
         dispatch(setCharity(charity));
-    }
+    };
 
     render() {
 
@@ -49,7 +49,7 @@ class charityList extends Component {
                         <Carousel.Caption>
                             <h3>{charity.Name}</h3>
                             <h3>{charity.About}</h3>
-                            <Glyphicon glyph={'star'} /> {Charity.Amount}
+                            <Glyphicon glyph={'star'} /> {charity.Amount}
                         </Carousel.Caption>
                     </Carousel.Item>)}
             </Carousel>);
@@ -65,6 +65,6 @@ const mapStateToProps = state => {
     return {
         charities: state.charity.charities
     }
-}
+};
 
 export default connect(mapStateToProps)(charityList);

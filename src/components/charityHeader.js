@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import {logoutUser} from "../actions/authActions";
 
-class MovieHeader extends Component {
+class charityHeader extends Component {
 
     logout(){
         this.props.dispatch(logoutUser());
@@ -17,15 +17,12 @@ class MovieHeader extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            Movie App
+                            Vacuum App
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
                         <LinkContainer to="/charityList">
                             <NavItem eventKey={1} disabled={!this.props.loggedIn}>Charity List </NavItem>
-                        </LinkContainer>
-                        <LinkContainer to={'/charity/'+ (this.props.selectedCharity ? this.props.selectedCharity.Name : '')}>
-                            <NavItem eventKey={2} disabled={!this.props.loggedIn}>Charity Detail</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/signin">
                             <NavItem eventKey={3}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
@@ -45,8 +42,8 @@ const mapStateToProps = state => {
     return {
         loggedIn: state.auth.loggedIn,
         username: state.auth.username,
-        selectedMovie: state.movie.selectedMovie,
+        selectedCharity: state.charity.selectedCharity,
     }
 }
 
-export default withRouter(connect(mapStateToProps)(MovieHeader));
+export default withRouter(connect(mapStateToProps)(charityHeader));

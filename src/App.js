@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import MovieHeader from './components/charityHeader';
-import MovieList from './components/charityList';
-import Movie from './components/charity';
+import CharityHeader from './components/charityHeader';
+import CharityList from './components/charityList';
+import Charity from './components/charity';
 import Authentication from './components/authentication';
 import {HashRouter,Route} from 'react-router-dom';
 import { Provider } from 'react-redux'
@@ -16,10 +16,10 @@ class App extends Component {
                 <Provider store={store}>
                 <HashRouter>
                     <div>
-                        <MovieHeader />
-                        <Route exact path="/" render={()=><MovieList />}/>
-                        <Route path="/movielist" render={()=><MovieList />}/>
-                        <Route path="/movie/:movieId" render={()=><Movie />}/>
+                        <CharityHeader />
+                        <Route exact path="/" render={()=><CharityList />}/>
+                        <Route path="/charitylist" render={()=><CharityList />}/>
+                        <Route path="/Charity/Get/:charityName" render={()=><Charity />}/>
                         <Route path="/signin" render={()=><Authentication />}/>
                     </div>
                 </HashRouter>

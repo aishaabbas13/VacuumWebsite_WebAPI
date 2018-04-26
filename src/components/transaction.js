@@ -65,17 +65,18 @@ class Transaction extends Component {
 
 
         const Donate = ({charities}) => {
-            return charities.map((charity, i) =>
+            return (
 
-                    <DropdownButton
-                        bsStyle={title.toLowerCase()}
-                        title={title}
-                        key={i}
-                        id={`dropdown-basic-${i}`}
+                    <DropdownInput
+                        options={charities}
+                        menuClassName='dropdown-input'
+                        onSelect={this.handleSelectName}
+                        placeholder='Search...'
+                        onChange={this.updateDetails} value={this.state.details.CharityName} type="text"
                     >
                         <MenuItem eventKey="1">{charity.Name}</MenuItem>
 
-                    </DropdownButton>
+                    </DropdownInput>
             );
         };
 
