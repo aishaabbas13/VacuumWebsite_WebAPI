@@ -32,12 +32,6 @@ class CharityHeader extends Component {
                         <LinkContainer to="/productList">
                             <NavItem eventKey={3} disabled={!this.props.loggedIn}>Product List </NavItem>
                         </LinkContainer>
-                        <LinkContainer to={'/Product/GetAll'+ (this.props.selectedProduct ? this.props.selectedProduct._id: '')}>
-                            <NavItem eventKey={4} disabled={!this.props.loggedIn}>Product Detail</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/Transaction/Save">
-                            <NavItem eventKey={5} disabled={!this.props.loggedIn}> Transaction </NavItem>
-                        </LinkContainer>
                         <LinkContainer to="/signin">
                             <NavItem eventKey={6}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
                         </LinkContainer>
