@@ -140,10 +140,18 @@ class Transaction extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup controlId="Charity">
+
                     <button onClick={this.showDonate.bind(this)}>Donate</button>
-                    {this.state.toggleDonate ? <Donate charities={this.props.charities}/> : " "}
-                </FormGroup>
+                    {this.state.toggleDonate ? <FormGroup>
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Charity:
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl onChange={this.updateDetails} value={this.state.details.CharityName} type="text"
+                                         placeholder="CharityName"/>
+                        </Col>
+                    </FormGroup> : " "}
+
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
