@@ -21,7 +21,7 @@ class App extends Component {
                 <HashRouter>
                     <div>
                         <CharityHeader />
-                        <Route exact path="/" render={()=><transactionList />}/>
+                        <Route exact path="/" render={()=><CharityList />}/>
                         <Route path="/charityList" render={()=><CharityList />}/>
                         <Route path="/productList" render={()=><ProductList />}/>
                         <Route path="/Product/Get/:produtName" render={()=><Product />}/>

@@ -50,7 +50,7 @@ class charityList extends Component {
                         <Carousel.Caption>
                             <h3>{charity.Name}</h3>
                             <h3>{charity.About}</h3>
-                            <Glyphicon glyph={'star'} /> {charity.Amount}
+                            <Glyphicon glyph={'usd'} /> {charity.Amount}
                         </Carousel.Caption>
                     </Carousel.Item>)}
             </Carousel>);

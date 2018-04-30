@@ -27,7 +27,7 @@ class Product extends Component {
                     <ListGroup>
                         <ListGroupItem>{currentProduct.productName}</ListGroupItem>
 
-                        <ListGroupItem><h4><Glyphicon glyph={'star'}/> {currentProduct.Price} </h4></ListGroupItem>
+                        <ListGroupItem><h4><Glyphicon glyph={'usd'}/> {currentProduct.Price} </h4></ListGroupItem>
                     </ListGroup>
                     <Transaction/>
                 </Panel>

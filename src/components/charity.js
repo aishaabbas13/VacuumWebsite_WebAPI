@@ -27,7 +27,7 @@ class Charity extends Component {
                     <ListGroup>
                         <ListGroupItem>{currentCharity.charityName}</ListGroupItem>
                         <ListGroupItem>{currentCharity.About}</ListGroupItem>
-                        <ListGroupItem><h4><Glyphicon glyph={'star'}/> {currentCharity.Amount} </h4></ListGroupItem>
+                        <ListGroupItem><h4><Glyphicon glyph={'usd'}/> {currentCharity.Amount} </h4></ListGroupItem>
                     </ListGroup>
                 </Panel>
             );

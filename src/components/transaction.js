@@ -22,7 +22,7 @@ class Transaction extends Component {
             details: {
                 Name: '',
                 Date: Date,
-                Total: 0,
+                Total: 79.03,
                 CreditCard: '',
                 ExpirationDate: '',
                 DonationAmount: '',
@@ -66,6 +66,10 @@ class Transaction extends Component {
         }
     }
 
+    submitAgain(){
+        window.location.reload();
+    }
+
     handleChange = (selectedOption) => {
         this.setState({selectedOption});
         console.log(`Selected: ${selectedOption.label}`);
@@ -91,10 +95,15 @@ class Transaction extends Component {
         const Donate = ({charities}) => {
             return (
 
-                <Dropdown title="Charities"  id="dropdown-organization">
-                    {charities.map((charity, i) =>
-                        <MenuItem key={i}>{charity.Name}</MenuItem>)}
-                </Dropdown>
+                <FormGroup>
+                    <Col componentClass={ControlLabel} sm={2}>
+                        Charity:
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl onChange={this.updateDetails} value={this.state.details.CharityName} type="text"
+                                     placeholder="CharityName"/>
+                    </Col>
+                </FormGroup>
             );
         };
 
@@ -138,11 +147,8 @@ class Transaction extends Component {
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        <LinkContainer to={'/Transaction/GetAll'} onClick={()=>this.handleClick(this.props.transactions)}>
                         {this.state.toggleDonate ? <Button onClick={this.transactionDonate}>Submit</Button> :
                             <Button onClick={this.transaction}>Submit</Button>}
-                        </LinkContainer>
-
                     </Col>
                 </FormGroup>
 
