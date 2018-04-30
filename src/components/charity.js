@@ -11,28 +11,11 @@ class Charity extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        if (this.props.selectedCharity == null)
+        if (this.props.selectedCharitie == null)
             dispatch(fetchCharity(this.props.charityName));
     }
 
     render() {
-        /*     const ActorInfo = ({actors}) => {
-                 return actors.map((actor, i) =>
-                     <p key={i}>
-                         <b>{actor.actorName}</b> {actor.characterName}
-                     </p>
-                 );
-             };
-
-             const ReviewInfo = ({reviews}) => {
-                 return reviews.map((review, i) =>
-                     <p key={i}>
-                     <b>{review.username}</b> {review.review}
-                         <Glyphicon glyph={'star'} /> {review.rating}
-                     </p>
-                 );
-             }*/
-
         const DetailInfo = ({currentCharity}) => {
             if (!currentCharity) { // evaluates to true if currentMovie is null
                 return <div>Loading...</div>;
@@ -42,7 +25,7 @@ class Charity extends Component {
                     <Panel.Heading>Charity Detail</Panel.Heading>
                     <Panel.Body><Image className="image" src={currentCharity.imageUrl} thumbnail/></Panel.Body>
                     <ListGroup>
-                        <ListGroupItem>{currentCharity.Name}</ListGroupItem>
+                        <ListGroupItem>{currentCharity.charityName}</ListGroupItem>
                         <ListGroupItem>{currentCharity.About}</ListGroupItem>
                         <ListGroupItem><h4><Glyphicon glyph={'star'}/> {currentCharity.Amount} </h4></ListGroupItem>
                     </ListGroup>
@@ -50,7 +33,7 @@ class Charity extends Component {
             );
         };
         return (
-            <DetailInfo currentCharity={this.props.selectedCharity}/>
+            <DetailInfo currentCharity={this.props.selectedCharitie}/>
         );
     }
 }
@@ -58,7 +41,7 @@ class Charity extends Component {
 const mapStateToProps = (state, ownProps) => {
     console.log(ownProps);
     return {
-        selectedCharity: state.charity.selectedCharity,
+        selectedCharitie: state.charity.selectedCharitie,
         charityName: ownProps.match.params.charityName
     }
 }

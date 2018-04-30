@@ -58,6 +58,6 @@ const mapStateToProps = state => {
         loggedIn: state.auth.loggedIn,
         username: state.auth.username
     }
-}
+};
 
 export default connect(mapStateToProps)(Authentication)

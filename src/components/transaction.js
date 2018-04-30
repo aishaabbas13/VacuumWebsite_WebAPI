@@ -3,7 +3,6 @@ import { submitRegister } from '../actions/authActions';
 import { connect } from 'react-redux';
 import { Col, Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import {submitTransactionDonate} from "../actions/TransactionActions";
-import {submitTransaction} from "../actions/TransactionActions";
 
 class Transaction extends Component {
 
@@ -12,19 +11,17 @@ class Transaction extends Component {
 
         this.updateDetails = this.updateDetails.bind(this);
         this.transaction = this.transaction.bind(this);
-        this.transactionDonate = this.transactionDonate.bind(this);
         this.state = {
             details:{
                 Name: '',
                 Date: Date,
-                Total: 0,
-                CreditCard: '',
-                ExpirationDate: '',
-                DonationAmount: '',
-                CharityName: ''
-
-            },
-            toggleDonate: false
+                Total: Number,
+                CrediCard: String,
+                ExpirationDate: String,
+                DonationAmount: Number,
+                CharityName: String,
+                toggleDonate: false
+            }
         };
     }
 
@@ -62,26 +59,8 @@ class Transaction extends Component {
     }
 
     render(){
-
-
-        const Donate = ({charities}) => {
-            return (
-
-                    <DropdownInput
-                        options={charities}
-                        menuClassName='dropdown-input'
-                        onSelect={this.handleSelectName}
-                        placeholder='Search...'
-                        onChange={this.updateDetails} value={this.state.details.CharityName} type="text"
-                    >
-                        <MenuItem eventKey="1">{charity.Name}</MenuItem>
-
-                    </DropdownInput>
-            );
-        };
-
-
         return (
+
             <Form horizontal>
                 <FormGroup controlId="Name">
                     <Col componentClass={ControlLabel} sm={2}>
@@ -106,22 +85,21 @@ class Transaction extends Component {
                         Exp:
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.ExpirationDate} type="text" placeholder="ExpDate" />
+                        <FormControl onChange={this.updateDetails} value={this.state.details.password} type="text" placeholder="ExpDate" />
                     </Col>
-                </FormGroup>
-
-                <FormGroup controlId="Charity">
-                    <button onClick={this.showDonate.bind(this)}>Donate</button>
-                    { this.state.toggleDonate ? <Donate charities={this.props.charities}/> : " " }
                 </FormGroup>
 
                 <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        { this.state.toggleDonate ? <Button onClick={this.transactionDonate}>Submit</Button> : <Button onClick={this.transaction}>Submit</Button> }
-
-                    </Col>
+                    <button onClick={this.showLogin.bind(this)}>Login</button><button onClick={this.showReg.bind(this)}>Register</button>
+                    { this.state.toggleReg ? <Register /> : <Login /> }
                 </FormGroup>
 
+
+                <FormGroup>
+                    <Col smOffset={2} sm={10}>
+                        <Button onClick={this.register}>Transaction</Button>
+                    </Col>
+                </FormGroup>
             </Form>
         )
     }
@@ -129,8 +107,7 @@ class Transaction extends Component {
 
 const mapStateToProps = state => {
     return {
-            charities: state.charity.charities
-        }
     }
+}
 
 export default connect(mapStateToProps)(Transaction);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { fetchCharities } from '../actions/charityActions';
-import { setCharity } from '../actions/charityActions';
+import { fetchProducts } from '../actions/productActions'
+import { setProduct } from '../actions/productActions';
 import {connect} from "react-redux";
 import { Image } from 'react-bootstrap'
 import { Carousel } from 'react-bootstrap'
@@ -9,7 +9,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 
 //require a callback function to be sent to MovieList to update the header subtitle
 
-class charityList extends Component {
+class ProductList extends Component {
     constructor(props) {
         super(props);
         this.handleSelect = this.handleSelect.bind(this);
@@ -17,55 +17,53 @@ class charityList extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        dispatch(fetchCharities());
+        dispatch(fetchProducts());
     }
 
     handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
-        dispatch(setCharity(this.props.movies[selectedIndex]));
+        dispatch(setProduct(this.props.products[selectedIndex]));
     }
 
-    handleClick = (charity) => {
+    handleClick = (product) => {
         const {dispatch} = this.props;
-        dispatch(setCharity(charity));
+        dispatch(setProduct(product));
     }
 
     render() {
 
-        const MovieListCarousel= ({charityList}) => {
-            if (!charityList) { // evaluates to true if currentMovie is null
+        const productListCarousel= ({productList}) => {
+            if (!productList) { // evaluates to true if currentMovie is null
                 return <div>Loading...</div>;
             }
 
             return (
                 <Carousel onSelect={this.handleSelect}>
-                    {charityList.map((movie) =>
-                        <Carousel.Item key={movie._id}>
+                    {productList.map((product) =>
+                        <Carousel.Item key={product._id}>
                             <div>
-                                <LinkContainer to={'/movie/'+movie._id} onClick={()=>this.handleClick(movie)}>
-                                    <Image className="image" src={movie.imageUrl} thumbnail />
+                                <LinkContainer to={'/Product/GetAll'+product._id} onClick={()=>this.handleClick(product)}>
+                                    <Image className="image" src={product.imageUrl} thumbnail />
                                 </LinkContainer>
                             </div>
                             <Carousel.Caption>
-                                <h3>{movie.title}</h3>
-                                <Glyphicon glyph={'star'} /> {movie.avgRating} &nbsp;&nbsp; {movie.releaseDate}
+                                <h3>{product.Name}</h3>
+                                <Glyphicon glyph={'star'} /> {product.Price} &nbsp;&nbsp;
                             </Carousel.Caption>
                         </Carousel.Item>)}
                 </Carousel>);
         }
 
         return (
-            <MovieListCarousel charityList={this.props.charities} />
+            <productListCarousel productList={this.props.products} />
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        charities: state.charity.charities
+        products: state.product.products
     }
 }
 
-export default connect(mapStateToProps)(charityList);
-
-   <Panel.Body><ReviewInfo reviews={currentMovie.reviews} /></Panel.Body>
+export default connect(mapStateToProps)(ProductList);

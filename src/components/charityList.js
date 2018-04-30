@@ -6,6 +6,7 @@ import { Image } from 'react-bootstrap'
 import { Carousel } from 'react-bootstrap'
 import { Glyphicon } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap';
+//import {charity} from '../components/charity';
 
 //require a callback function to be sent to MovieList to update the header subtitle
 
@@ -28,7 +29,7 @@ class charityList extends Component {
     handleClick = (charity) => {
         const {dispatch} = this.props;
         dispatch(setCharity(charity));
-    };
+    }
 
     render() {
 
@@ -42,7 +43,7 @@ class charityList extends Component {
                     {charityList.map((charity) =>
                     <Carousel.Item key={charity._id}>
                         <div>
-                            <LinkContainer to={'//Charity/Get/'+charity.Name} onClick={()=>this.handleClick(charity)}>
+                            <LinkContainer to={'/Charity/Get/'+charity._id} onClick={()=>this.handleClick(charity)}>
                                 <Image className="image" src={charity.imageUrl} thumbnail />
                             </LinkContainer>
                         </div>
@@ -65,6 +66,6 @@ const mapStateToProps = state => {
     return {
         charities: state.charity.charities
     }
-};
+}
 
 export default connect(mapStateToProps)(charityList);

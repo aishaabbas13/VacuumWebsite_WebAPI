@@ -4,21 +4,21 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 function charitiesFetched(charities){
     return {
         type: actionTypes.FETCH_CHARITIES,
-        movies: charities
+        charities: charities
     }
 }
 
 function charityFetched(charity){
     return {
-        type: actionTypes.FETCH_CHARITY,
-        selectedCharity: charity
+        type: actionTypes.FETCH_CHARITIE,
+        selectedCharitie: charity
     }
 }
 
 function charitySet(charity){
     return {
         type: actionTypes.SET_CHARITY,
-        selectedCharity: charity
+        selectedCharitie: charity
     }
 }
 
