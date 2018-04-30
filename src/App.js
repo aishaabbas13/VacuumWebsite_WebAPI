@@ -4,6 +4,7 @@ import CharityHeader from './components/charityHeader';
 import CharityList from './components/charityList';
 import ProductList from './components/productList';
 import Charity from './components/charity';
+import Transaction from './components/transaction';
 import Authentication from './components/authentication';
 import {HashRouter,Route} from 'react-router-dom';
 import { Provider } from 'react-redux'
@@ -18,7 +19,7 @@ class App extends Component {
                 <HashRouter>
                     <div>
                         <CharityHeader />
-                        <Route exact path="/" render={()=><CharityList />}/>
+                        <Route exact path="/" render={()=><Transaction />}/>
                         <Route path="/charityList" render={()=><CharityList />}/>
                         <Route path="/productList" render={()=><ProductList />}/>
                         <Route path="/Charity/Get/:charityName" render={()=><Charity />}/>
