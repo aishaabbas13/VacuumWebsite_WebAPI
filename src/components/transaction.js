@@ -4,19 +4,22 @@ import {submitTransactionDonate} from "../actions/TransactionActions";
 import {submitTransaction} from "../actions/TransactionActions";
 import { connect } from 'react-redux';
 //import DropdownInput from 'react-dropdown-input';
+import { Dropdown } from 'react-bootstrap';
+import { MenuItem } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 import Select from 'react-select';
 import {withRouter} from "react-router-dom";
 
 class Transaction extends Component {
 
-    constructor(){
+    constructor() {
         super();
 
         this.updateDetails = this.updateDetails.bind(this);
         this.transaction = this.transaction.bind(this);
         this.transactionDonate = this.transactionDonate.bind(this);
         this.state = {
-            details:{
+            details: {
                 Name: '',
                 Date: Date,
                 Total: 0,
@@ -30,7 +33,7 @@ class Transaction extends Component {
         };
     }
 
-    updateDetails(event){
+    updateDetails(event) {
         let updateDetails = Object.assign({}, this.state.details);
 
         updateDetails[event.target.id] = event.target.value;
@@ -39,12 +42,12 @@ class Transaction extends Component {
         });
     }
 
-    transaction(){
+    transaction() {
         const {dispatch} = this.props;
         dispatch(submitTransaction(this.state.details));
     }
 
-    transactionDonate(){
+    transactionDonate() {
         const {dispatch} = this.props;
         dispatch(submitTransactionDonate(this.state.details));
     }
@@ -64,40 +67,34 @@ class Transaction extends Component {
     }
 
     handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
+        this.setState({selectedOption});
         console.log(`Selected: ${selectedOption.label}`);
     }
 
-    updateValue (newValue) {
+    updateValue(newValue) {
         this.setState({
             selectValue: newValue
         });
     }
 
-    render(){
-
-        var options = this.state.charities;
+    render() {
 
 
+        /*const charityInfo = ({reviews}) => {
+            return reviews.map((review, i) =>
 
-        const Donate = () => {
+            );
+        }*/
+
+
+
+        const Donate = ({charities}) => {
             return (
 
-                <Select
-                    ref={(ref) => { this.select = ref; }}
-                    onBlurResetsInput={false}
-                    onSelectResetsInput={false}
-                    autoFocus
-                    options={options}
-                    simpleValue
-                    clearable
-                    name="selected-state"
-                    disabled={this.state.disabled}
-                    value={this.state.selectValue}
-                    onChange={this.updateValue}
-                    rtl={this.state.rtl}
-                    searchable={this.state.searchable}
-                />
+                <Dropdown title="Charities"  id="dropdown-organization">
+                    {charities.map((charity, i) =>
+                        <MenuItem key={i}>{charity.Name}</MenuItem>)}
+                </Dropdown>
             );
         };
 
@@ -109,16 +106,18 @@ class Transaction extends Component {
                         Name:
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.name} type="text" placeholder="Name" />
+                        <FormControl onChange={this.updateDetails} value={this.state.details.name} type="text"
+                                     placeholder="Name"/>
                     </Col>
                 </FormGroup>
 
                 <FormGroup controlId="CreditCard">
                     <Col componentClass={ControlLabel} sm={2}>
-                        CreditCard:
+                        Credit:
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.CreditCard} type="text" placeholder="CreditCard" />
+                        <FormControl onChange={this.updateDetails} value={this.state.details.CreditCard} type="text"
+                                     placeholder="CreditCard"/>
                     </Col>
                 </FormGroup>
 
@@ -127,18 +126,22 @@ class Transaction extends Component {
                         Exp:
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.ExpirationDate} type="text" placeholder="ExpDate" />
+                        <FormControl onChange={this.updateDetails} value={this.state.details.ExpirationDate} type="text"
+                                     placeholder="ExpDate"/>
                     </Col>
                 </FormGroup>
 
                 <FormGroup controlId="Charity">
                     <button onClick={this.showDonate.bind(this)}>Donate</button>
-                    { this.state.toggleDonate ? <Donate charities={this.props.charities}/> : " " }
+                    {this.state.toggleDonate ? <Donate charities={this.props.charities}/> : " "}
                 </FormGroup>
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
-                        { this.state.toggleDonate ? <Button onClick={this.transactionDonate}>Submit</Button> : <Button onClick={this.transaction}>Submit</Button> }
+                        <LinkContainer to={'/Transaction/GetAll'} onClick={()=>this.handleClick(this.props.transactions)}>
+                        {this.state.toggleDonate ? <Button onClick={this.transactionDonate}>Submit</Button> :
+                            <Button onClick={this.transaction}>Submit</Button>}
+                        </LinkContainer>
 
                     </Col>
                 </FormGroup>
@@ -146,13 +149,16 @@ class Transaction extends Component {
             </Form>
         );
 
-}
-
-
-    const mapStateToProps = state => {
-    return {
-        charities: state.charity.charities
     }
 }
 
-    export default withRouter(connect(mapStateToProps)(Transaction));
+const mapStateToProps = state => {
+    return {
+        charities: state.charity.charities,
+        transactions: state.transaction.transactions
+    }
+}
+
+export default connect(mapStateToProps)(Transaction);
+
+

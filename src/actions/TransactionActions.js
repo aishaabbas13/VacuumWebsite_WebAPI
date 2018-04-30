@@ -14,6 +14,20 @@ function logout(){
     }
 }
 
+function transactionsSet(transactions){
+    return {
+        type: actionTypes.SET_TRANSACTIONS,
+        transactions: transactions
+    }
+}
+
+function transactionsFetched(transactions) {
+    return {
+        type: actionTypes.FETCH_TRANSACTIONS,
+        transactions: transactions
+    }
+}
+
 export function submitTransactionDonate(data){
     const env = runtimeEnv();
     return dispatch => {
@@ -21,7 +35,8 @@ export function submitTransactionDonate(data){
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(data),
             mode: 'cors'})
@@ -32,10 +47,8 @@ export function submitTransactionDonate(data){
                 return response.json();
             })
             .then( (res) => {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('token', res.token);
 
-                dispatch(userLoggedIn(data.username));
+                dispatch(transactionsSet(data));
             })
             .catch( (e) => console.log(e) );
     }
@@ -48,7 +61,8 @@ export function submitTransaction(data){
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(data),
             mode: 'cors'})
@@ -59,14 +73,37 @@ export function submitTransaction(data){
                 return response.json();
             })
             .then( (res) => {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('token', res.token);
 
-                dispatch(userLoggedIn(data.username));
+                dispatch(transactionsSet(data));
             })
             .catch( (e) => console.log(e) );
     }
 }
+
+export function fetchTransactions(){
+    const env = runtimeEnv();
+    return dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/Transaction/GetAll`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            mode: 'cors'})
+            .then( (response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then( (res) => {
+                dispatch(transactionsFetched(res));
+            })
+            .catch( (e) => console.log(e) );
+    }
+}
+
 /*
 export function submitRegister(data){
     const env = runtimeEnv();

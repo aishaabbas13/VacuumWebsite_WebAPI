@@ -4,7 +4,7 @@ import { setProduct } from '../actions/productActions';
 import {connect} from "react-redux";
 import { Image } from 'react-bootstrap'
 import { Carousel } from 'react-bootstrap'
-import { Glyphicon } from 'react-bootstrap'
+//import { Glyphicon } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap';
 
 //require a callback function to be sent to MovieList to update the header subtitle
@@ -32,7 +32,7 @@ class ProductList extends Component {
 
     render() {
 
-        const productListCarousel= ({productList}) => {
+        const ProductListCarousel= ({productList}) => {
             if (!productList) { // evaluates to true if currentMovie is null
                 return <div>Loading...</div>;
             }
@@ -42,20 +42,20 @@ class ProductList extends Component {
                     {productList.map((product) =>
                         <Carousel.Item key={product._id}>
                             <div>
-                                <LinkContainer to={'/Product/GetAll'+product._id} onClick={()=>this.handleClick(product)}>
+                                <LinkContainer to={'/Product/Get/'+product.Name} onClick={()=>this.handleClick(product)}>
                                     <Image className="image" src={product.imageUrl} thumbnail />
                                 </LinkContainer>
                             </div>
                             <Carousel.Caption>
                                 <h3>{product.Name}</h3>
-                                <Glyphicon glyph={'star'} /> {product.Price} &nbsp;&nbsp;
+
                             </Carousel.Caption>
                         </Carousel.Item>)}
                 </Carousel>);
         }
 
         return (
-            <productListCarousel productList={this.props.products} />
+            <ProductListCarousel productList={this.props.products} />
         );
     }
 }

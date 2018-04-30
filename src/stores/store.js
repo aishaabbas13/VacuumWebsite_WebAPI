@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import authReducer from '../reducers/authReducer';
 import charityReducer from "../reducers/charityReducer";
 import productRecuder from "../reducers/productReducer";
+import transactionRecuder from "../reducers/transactionRecuder"
 
 const middlewares = [thunk];
 
@@ -16,7 +17,8 @@ const store = createStore(
     combineReducers({
         auth: authReducer,
         charity: charityReducer,
-        product: productRecuder
+        product: productRecuder,
+        transaction: transactionRecuder
     }),
     applyMiddleware(
         ...middlewares

@@ -3,11 +3,13 @@ import './App.css';
 import CharityHeader from './components/charityHeader';
 import CharityList from './components/charityList';
 import ProductList from './components/productList';
+import Product from './components/product';
 import Charity from './components/charity';
-import Transaction from './components/transaction';
 import Authentication from './components/authentication';
 import {HashRouter,Route} from 'react-router-dom';
 import { Provider } from 'react-redux'
+import Transaction from './components/transaction';
+import transactionList from './components/user';
 import store from './stores/store'
 
 //add routing configuration
@@ -19,10 +21,12 @@ class App extends Component {
                 <HashRouter>
                     <div>
                         <CharityHeader />
-                        <Route exact path="/" render={()=><Transaction />}/>
+                        <Route exact path="/" render={()=><transactionList />}/>
                         <Route path="/charityList" render={()=><CharityList />}/>
                         <Route path="/productList" render={()=><ProductList />}/>
+                        <Route path="/Product/Get/:produtName" render={()=><Product />}/>
                         <Route path="/Charity/Get/:charityName" render={()=><Charity />}/>
+                        <Route path="/Transaction/Save" render={()=><Transaction />}/>
                         <Route path="/signin" render={()=><Authentication />}/>
                     </div>
                 </HashRouter>

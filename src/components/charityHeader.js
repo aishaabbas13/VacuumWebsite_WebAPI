@@ -17,14 +17,16 @@ class CharityHeader extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            Vacuum Master
+                            <strong> Vacuum Master </strong>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
+                        <br/>
+                        <br/>
                         <LinkContainer to="/charityList">
                             <NavItem eventKey={1} disabled={!this.props.loggedIn}>Charity List </NavItem>
                         </LinkContainer>
-                        <LinkContainer to={'/Charity/Get/'+ (this.props.selectedCharitie ? this.props.selectedCharitie._id: '')}>
+                        <LinkContainer to={'/Charity/Get/'+ (this.props.selectedCharity ? this.props.selectedCharity._id: '')}>
                             <NavItem eventKey={2} disabled={!this.props.loggedIn}>Charity Detail</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/productList">
@@ -33,14 +35,16 @@ class CharityHeader extends Component {
                         <LinkContainer to={'/Product/GetAll'+ (this.props.selectedProduct ? this.props.selectedProduct._id: '')}>
                             <NavItem eventKey={4} disabled={!this.props.loggedIn}>Product Detail</NavItem>
                         </LinkContainer>
+                        <LinkContainer to="/Transaction/Save">
+                            <NavItem eventKey={5} disabled={!this.props.loggedIn}> Transaction </NavItem>
+                        </LinkContainer>
                         <LinkContainer to="/signin">
-                            <NavItem eventKey={5}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
+                            <NavItem eventKey={6}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
                         </LinkContainer>
                     </Nav>
                 </Navbar>
                 <header className="App-header">
                     <h1 className="App-title">{(this.props.selectedCharitie ? this.props.selectedCharitie.Name : '')}</h1>
-                    <h2 className="App-title">{(this.props.selectedProduct ? this.props.selectedProduct.Name : '')}</h2>
                 </header>
             </div>
 
@@ -52,7 +56,7 @@ const mapStateToProps = state => {
     return {
         loggedIn: state.auth.loggedIn,
         username: state.auth.username,
-        selectedCharitie: state.charity.selectedCharitie,
+        selectedCharity: state.charity.selectedCharity,
         selectedProduct: state.product.selectedProduct
     }
 }
