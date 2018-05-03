@@ -130,6 +130,7 @@ class Transaction extends Component {
                     </Col>
                 </FormGroup>
 
+
                 <FormGroup controlId="ExpirationDate">
                     <Col componentClass={ControlLabel} sm={2}>
                         Exp:
@@ -142,7 +143,7 @@ class Transaction extends Component {
 
 
                     <button onClick={this.showDonate.bind(this)}>Donate</button>
-                    {this.state.toggleDonate ? <FormGroup>
+                    {this.state.toggleDonate ? <FormGroup controlId="CharityName">
                         <Col componentClass={ControlLabel} sm={2}>
                             Charity:
                         </Col>
@@ -151,7 +152,6 @@ class Transaction extends Component {
                                          placeholder="CharityName"/>
                         </Col>
                     </FormGroup> : " "}
-
 
                 <FormGroup>
                     <Col smOffset={2} sm={10}>

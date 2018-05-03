@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchTransactions } from '../actions/TransactionActions';
-//import { setTransactions } from '../actions/TransactionActions';
+import { setTransaction } from '../actions/TransactionActions';
 import {connect} from "react-redux";
 import { Image } from 'react-bootstrap'
 import { Carousel } from 'react-bootstrap'
@@ -13,18 +13,18 @@ import {LinkContainer} from 'react-router-bootstrap';
 class TransactionList extends Component {
     constructor(props) {
         super(props);
-        //this.handleSelect = this.handleSelect.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(fetchTransactions());
     }
-/*
+
     handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
-        dispatch(setCharity(this.props.charities[selectedIndex]));
-    }*/
+        dispatch(setTransaction(this.props.charities[selectedIndex]));
+    }
 
    /* handleClick = (charity) => {
         const {dispatch} = this.props;
@@ -51,7 +51,7 @@ class TransactionList extends Component {
                             </Carousel.Caption>
                         </Carousel.Item>)}
                 </Carousel>);
-        }
+        };
 
         return (
             <TransactionListCarousel transactionList={this.props.transactions} />

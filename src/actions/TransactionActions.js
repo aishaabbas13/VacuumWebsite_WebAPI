@@ -21,10 +21,17 @@ function transactionsSet(transactions){
     }
 }
 
+
 function transactionsFetched(transactions) {
     return {
         type: actionTypes.FETCH_TRANSACTIONS,
         transactions: transactions
+    }
+}
+
+export function setTransaction(Transaction) {
+    return dispatch => {
+        dispatch(transactionsSet(Transaction));
     }
 }
 
@@ -130,10 +137,3 @@ export function submitRegister(data){
     }
 }
 */
-export function logoutUser() {
-    return dispatch => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('token');
-        dispatch(logout());
-    }
-}

@@ -2,8 +2,8 @@ import constants from '../constants/actionTypes'
 
 var initialState = {
     charities: [],
-    selectedCharitie: null
-}
+    selectedCharity: null
+};
 
 export default (state = initialState, action) => {
 
@@ -12,13 +12,13 @@ export default (state = initialState, action) => {
     switch(action.type) {
         case constants.FETCH_CHARITIES:
             updated['charities'] = action.charities;
-            updated['selectedCharitie'] = action.charities[0];
+            updated['selectedCharity'] = action.charities[0];
             return updated;
         case constants.SET_CHARITY:
-            updated['selectedCharitie'] = action.selectedCharitie;
+            updated['selectedCharity'] = action.selectedCharity;
             return updated;
         case constants.FETCH_CHARITY:
-            updated['selectedCharitie'] = action.selectedCharitie;
+            updated['selectedCharity'] = action.selectedCharity;
             return updated;
         default:
             return state;
