@@ -10,10 +10,10 @@ import {LinkContainer} from 'react-router-bootstrap';
 
 //require a callback function to be sent to MovieList to update the header subtitle
 
-class transactionList extends Component {
+class TransactionList extends Component {
     constructor(props) {
         super(props);
-        this.handleSelect = this.handleSelect.bind(this);
+        //this.handleSelect = this.handleSelect.bind(this);
     }
 
     componentDidMount() {
@@ -61,8 +61,8 @@ class transactionList extends Component {
 
 const mapStateToProps = state => {
     return {
-        transactions: state.charity.transactions
+        transactions: state.transaction.transactions
     }
 }
 
-export default connect(mapStateToProps)(transactionList);
+export default connect(mapStateToProps)(TransactionList);

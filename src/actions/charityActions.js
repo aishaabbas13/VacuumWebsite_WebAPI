@@ -10,15 +10,15 @@ function charitiesFetched(charities){
 
 function charityFetched(charity){
     return {
-        type: actionTypes.FETCH_CHARITIE,
-        selectedCharitie: charity
+        type: actionTypes.FETCH_CHARITY,
+        selectedCharity: charity
     }
 }
 
 function charitySet(charity){
     return {
         type: actionTypes.SET_CHARITY,
-        selectedCharitie: charity
+        selectedCharity: charity
     }
 }
 
@@ -71,6 +71,32 @@ export function fetchCharity(charityName){
             })
             .then( (res) => {
                 dispatch(charityFetched(res));
+            })
+            .catch( (e) => console.log(e) );
+    }
+}
+
+export function submitCharity(data){
+    const env = runtimeEnv();
+    return dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/Charity/Save`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            body: JSON.stringify(data),
+            mode: 'cors'})
+            .then( (response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then( (res) => {
+
+                dispatch(setCharity(data));
             })
             .catch( (e) => console.log(e) );
     }

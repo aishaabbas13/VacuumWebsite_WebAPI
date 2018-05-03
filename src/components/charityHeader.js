@@ -29,11 +29,17 @@ class CharityHeader extends Component {
                         <LinkContainer to={'/Charity/Get/'+ (this.props.selectedCharity ? this.props.selectedCharity._id: '')}>
                             <NavItem eventKey={2} disabled={!this.props.loggedIn}>Charity Detail</NavItem>
                         </LinkContainer>
+                        <LinkContainer to="/TransactionList">
+                            <NavItem eventKey={3} disabled={!this.props.loggedIn}>Transaction List </NavItem>
+                        </LinkContainer>
                         <LinkContainer to="/productList">
                             <NavItem eventKey={3} disabled={!this.props.loggedIn}>Product List </NavItem>
                         </LinkContainer>
+                        <LinkContainer to="/charityForm">
+                            <NavItem eventKey={4} disabled={!this.props.loggedIn}>Add a Charity</NavItem>
+                        </LinkContainer>
                         <LinkContainer to="/signin">
-                            <NavItem eventKey={6}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
+                            <NavItem eventKey={5}>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</NavItem>
                         </LinkContainer>
                     </Nav>
                 </Navbar>

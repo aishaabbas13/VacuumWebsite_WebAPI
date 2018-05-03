@@ -90,7 +90,7 @@ class Transaction extends Component {
             );
         }*/
 
-
+/*
 
         const Donate = ({charities}) => {
             return (
@@ -107,7 +107,7 @@ class Transaction extends Component {
             );
         };
 
-
+*/
         return (
             <Form horizontal>
                 <FormGroup controlId="Name">
@@ -115,7 +115,7 @@ class Transaction extends Component {
                         Name:
                     </Col>
                     <Col sm={10}>
-                        <FormControl onChange={this.updateDetails} value={this.state.details.name} type="text"
+                        <FormControl onChange={this.updateDetails} value={this.state.details.Name} type="text"
                                      placeholder="Name"/>
                     </Col>
                 </FormGroup>
