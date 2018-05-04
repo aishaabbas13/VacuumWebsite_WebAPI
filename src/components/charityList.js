@@ -43,7 +43,7 @@ class charityList extends Component {
                     {charityList.map((charity) =>
                     <Carousel.Item key={charity._id}>
                         <div>
-                            <LinkContainer to={'/Charity/Get/'+charity._id} onClick={()=>this.handleClick(charity)}>
+                            <LinkContainer to={'/Charity/Get/'+charity.Name} onClick={()=>this.handleClick(charity)}>
                                 <Image className="image" src={charity.imageUrl} thumbnail />
                             </LinkContainer>
                         </div>

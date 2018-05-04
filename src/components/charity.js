@@ -11,7 +11,7 @@ class Charity extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        if (this.props.selectedCharitie == null)
+        if (this.props.selectedCharity == null)
             dispatch(fetchCharity(this.props.charityName));
     }
 
@@ -25,7 +25,7 @@ class Charity extends Component {
                     <Panel.Heading>Charity Detail</Panel.Heading>
                     <Panel.Body><Image className="image" src={currentCharity.imageUrl} thumbnail/></Panel.Body>
                     <ListGroup>
-                        <ListGroupItem>{currentCharity.charityName}</ListGroupItem>
+                        <ListGroupItem>{currentCharity.Name}</ListGroupItem>
                         <ListGroupItem>{currentCharity.About}</ListGroupItem>
                         <ListGroupItem><h4><Glyphicon glyph={'usd'}/> {currentCharity.Amount} </h4></ListGroupItem>
                     </ListGroup>
@@ -33,7 +33,7 @@ class Charity extends Component {
             );
         };
         return (
-            <DetailInfo currentCharity={this.props.selectedCharitie}/>
+            <DetailInfo currentCharity={this.props.selectedCharity}/>
         );
     }
 }
@@ -41,7 +41,7 @@ class Charity extends Component {
 const mapStateToProps = (state, ownProps) => {
     console.log(ownProps);
     return {
-        selectedCharitie: state.charity.selectedCharitie,
+        selectedCharity: state.charity.selectedCharity,
         charityName: ownProps.match.params.charityName
     }
 }

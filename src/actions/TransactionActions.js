@@ -14,10 +14,10 @@ function logout(){
     }
 }
 
-function transactionsSet(transactions){
+function transactionSet(transaction){
     return {
-        type: actionTypes.SET_TRANSACTIONS,
-        transactions: transactions
+        type: actionTypes.SET_TRANSACTION,
+        transactions: transaction
     }
 }
 
@@ -31,7 +31,7 @@ function transactionsFetched(transactions) {
 
 export function setTransaction(Transaction) {
     return dispatch => {
-        dispatch(transactionsSet(Transaction));
+        dispatch(transactionSet(Transaction));
     }
 }
 
@@ -55,7 +55,7 @@ export function submitTransactionDonate(data){
             })
             .then( (res) => {
 
-                dispatch(transactionsSet(data));
+                dispatch(transactionSet(data));
             })
             .catch( (e) => console.log(e) );
     }
@@ -81,7 +81,7 @@ export function submitTransaction(data){
             })
             .then( (res) => {
 
-                dispatch(transactionsSet(data));
+                dispatch(transactionSet(data));
             })
             .catch( (e) => console.log(e) );
     }

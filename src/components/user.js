@@ -23,7 +23,7 @@ class TransactionList extends Component {
 
     handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
-        dispatch(setTransaction(this.props.charities[selectedIndex]));
+        dispatch(setTransaction(this.props.transactions[selectedIndex]));
     }
 
    /* handleClick = (charity) => {
@@ -42,12 +42,15 @@ class TransactionList extends Component {
                 <Carousel onSelect={this.handleSelect}>
                     {transactionList.map((charity) =>
                         <Carousel.Item key={charity._id}>
-                            <Carousel.Caption>
+                            <div>
                                 <h3>{charity.Name}</h3>
-                                <h3>{charity.Date}</h3>
-                                <h3>{charity.Total}</h3>
-                                <h3>{charity.DonationAmount}</h3>
-                                <h3>{charity.CharityName}</h3>
+                                <h3>Date: {charity.Date}</h3>
+                                <h3>Total: {charity.Total}</h3>
+                                <h3>Donation: {charity.DonationAmount}</h3>
+                                <h3>CharityName: {charity.CharityName}</h3>
+                            </div>
+                            <Carousel.Caption>
+
                             </Carousel.Caption>
                         </Carousel.Item>)}
                 </Carousel>);

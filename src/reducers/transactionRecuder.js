@@ -18,6 +18,12 @@ export default (state = initialState, action) => {
             return updated;
         case constants.FETCH_TRANSACTIONS:
             updated['transactions'] = action.transactions;
+            updated['selectedTransaction'] = action.transactions[0];
+            return updated;
+        case constants.FETCH_TRANSACTION:
+            updated['selectedTransaction'] = action.selectedTransaction;
+            return updated;
+
         default:
             return state;
     }
